@@ -1,0 +1,29 @@
+name: Build Windows Executable
+
+on:
+  workflow_dispatch: # Ermöglicht manuelles Starten
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: '6.5.3'
+        arch: 'win64_mingw'
+
+    - name: Build with qmake
+      run: |
+        qmake Egonomize.pro
+        mingw32-make release -j2
+
+    - name: Upload executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: Eqonomize-Windows
+        path: release/Eqonomize.exe
