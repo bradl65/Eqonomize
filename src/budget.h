@@ -50,7 +50,7 @@
 #	define XML_COMPARE_CONST_CHAR(x) x
 #endif
 
-//#define PACKAGE_PORTABLE 1
+#define PACKAGE_PORTABLE 1
 
 class QProcess;
 class QNetworkReply;
